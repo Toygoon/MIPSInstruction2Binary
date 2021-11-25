@@ -18,7 +18,7 @@ public class OpCodes {
     }
 
     /* getOpBinary returns its binary code from the opcode.*/
-    public static String getOpBinary(String op) {
+    public static String getOpBin(String op) {
         for(int i=0; i<OP_CODES.length; i++) {
             if(op.equals(OP_CODES[i]))
                 return OP_VALUES[i];

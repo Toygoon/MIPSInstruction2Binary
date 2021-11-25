@@ -24,7 +24,9 @@ public class BinaryGenerator {
     private String op_code = "";
     private OpCodes ocInstance = new OpCodes();
     private Registers regInstance = new Registers();
+    private Funct functInstance = new Funct();
     private OffsetCalculator offsetCalculator = new OffsetCalculator();
+    private final String SHAMT = "00000";
 
     public boolean isItype = false;
 
@@ -56,7 +58,7 @@ public class BinaryGenerator {
     public String generateBin() {
         String binary = "";
         // Using getOpBinary method to convert the binary values of op_code.
-        inst[0] = ocInstance.getOpBinary(op_code);
+        inst[0] = ocInstance.getOpBin(op_code);
 
         // Converting only I, R type instructions
         if(isItype) {
@@ -81,7 +83,12 @@ public class BinaryGenerator {
             // Because it's I type, immediate field is 16-bit binary code.
             inst[3] = offsetCalculator.hexToBin(offsetStr);
         } else {
-
+            inst[1] = regInstance.getRegBin(regs[1]);
+            inst[2] = regInstance.getRegBin(regs[2]);
+            inst[3] = regInstance.getRegBin(regs[0]);
+            // shamt is unused.
+            inst[4] = SHAMT;
+            inst[5] = functInstance.getFunctBin(op_code);
         }
 
         for(int i=0; i<inst.length; i++)
