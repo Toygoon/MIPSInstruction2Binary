@@ -4,19 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputManager {
-    public static boolean isSaving() {
-        Scanner s = new Scanner(System.in);
-        System.out.println(">> Do you want to save to the file? (y or n)");
-        System.out.print("> ");
-        String input = s.nextLine();
-        input.toLowerCase();
-
-        if(input.contains("y"))
-            return true;
-
-        return false;
-    }
-
     public static ArrayList<String> inputText() {
         Scanner s = new Scanner(System.in);
 

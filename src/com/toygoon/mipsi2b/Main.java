@@ -1,10 +1,24 @@
 package com.toygoon.mipsi2b;
 
-public class Main {
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
+public class Main {
+    public static void main(String[] args) throws Exception {
         InputManager im = new InputManager();
-        BinaryGenerator bg = new BinaryGenerator(im.inputText());
-        System.out.println(bg.generateBin());
+        SaveManager sm = new SaveManager();
+
+        while(true) {
+            ArrayList<String> input = im.inputText();
+            if(input == null)
+                break;
+
+            BinaryGenerator bg = new BinaryGenerator(input);
+            String generated = bg.generateBin();
+
+            System.out.println(generated);
+            sm.appendData(generated);
+
+
+        }
     }
 }
