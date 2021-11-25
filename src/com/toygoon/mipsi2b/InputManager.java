@@ -4,9 +4,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class InputManager {
+    public static boolean isSaving() {
+        Scanner s = new Scanner(System.in);
+        System.out.print("");
+        String input = s.nextLine();
+        String[] splitInput = input.split(" ");
+
+        return false;
+    }
+
     public static ArrayList<String> inputText() {
         Scanner s = new Scanner(System.in);
         System.out.print("> ");
+        // User input from here.
         String input = s.nextLine();
         String[] splitInput = input.split(" ");
 
