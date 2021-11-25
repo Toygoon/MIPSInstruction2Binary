@@ -6,6 +6,9 @@ public class OffsetCalculator {
 
     /* hexToBin returns given offset to 16-bit extended binary value. */
     public String hexToBin(String offset) {
+        if(offset.equals("0"))
+            return "0000000000000000";
+
         offset = offset.toUpperCase();
         offset = offset.replaceAll("0X", "");
         String binary = Integer.toBinaryString(Integer.parseInt(offset, 16));

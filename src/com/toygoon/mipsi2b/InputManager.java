@@ -24,6 +24,9 @@ public class InputManager {
         // User input from here.
         String input = s.nextLine();
 
+        if(input.equals("exit"))
+            return null;
+
         // Splits the String with space to the String array.
         String[] splitInput = input.split(" ");
         ArrayList<String> separated = new ArrayList<>();

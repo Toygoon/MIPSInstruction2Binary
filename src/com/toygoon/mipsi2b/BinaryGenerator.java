@@ -66,8 +66,14 @@ public class BinaryGenerator {
             * regOffsets[0] : offset
             * regOffsets[1] : base register */
             String[] regOffsets = offsetCalculator.splitOffset(regs[1]);
-            baseStr = regOffsets[1];
-            offsetStr = regOffsets[0];
+            if(regOffsets == null) {
+                // The case it doesn't include the offset values.
+                baseStr = regs[1];
+                offsetStr = "0";
+            } else {
+                baseStr = regOffsets[1];
+                offsetStr = regOffsets[0];
+            }
 
             // getRegBin returns the binary values which matches the given register.
             inst[1] = regInstance.getRegBin(baseStr);
@@ -75,6 +81,7 @@ public class BinaryGenerator {
             // Because it's I type, immediate field is 16-bit binary code.
             inst[3] = offsetCalculator.hexToBin(offsetStr);
         } else {
+
         }
 
         for(int i=0; i<inst.length; i++)
