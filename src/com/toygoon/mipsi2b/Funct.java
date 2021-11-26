@@ -13,4 +13,9 @@ public class Funct {
 
         return null;
     }
+
+    /* getAllFuncts returns all supported R type instructions from this application. */
+    public static String[] getAllFuncts() {
+        return FUNCT_INSTS;
+    }
 }

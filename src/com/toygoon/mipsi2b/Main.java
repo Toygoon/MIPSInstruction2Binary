@@ -13,12 +13,11 @@ public class Main {
                 break;
 
             BinaryGenerator bg = new BinaryGenerator(input);
+
             String generated = bg.generateBin();
 
             System.out.println(generated);
             sm.appendData(generated);
-
-
         }
     }
 }

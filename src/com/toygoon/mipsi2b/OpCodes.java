@@ -26,4 +26,9 @@ public class OpCodes {
 
         return R_TYPE_INST;
     }
+
+    /* getAllOps returns all supported opcodes from this application. */
+    public static String[] getAllOps() {
+        return OP_CODES;
+    }
 }

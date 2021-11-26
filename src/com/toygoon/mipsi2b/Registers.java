@@ -17,6 +17,7 @@ public class Registers {
         return null;
     }
 
+    /* getRegNum returns its register address from the binary code.*/
     public static String getRegNum(String reg) {
         for(int i=0; i<REG_BINS.length; i++) {
             if(reg.equals(REG_BINS[i]))
@@ -26,6 +27,7 @@ public class Registers {
         return null;
     }
 
+    /* getInitVal returns its initiated values of memory. */
     public static int getInitVal(String reg) {
         for(int i=0; i<REG_BINS.length; i++) {
             if(reg.equals(REG_BINS[i]))
@@ -38,6 +40,11 @@ public class Registers {
         }
 
         return 0;
+    }
+
+    /* getAllRegs returns all supported registers from this application. */
+    public static String[] getAllRegs() {
+        return REG_NUMS;
     }
 
 }
