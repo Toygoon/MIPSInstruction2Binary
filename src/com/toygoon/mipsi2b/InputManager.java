@@ -1,13 +1,33 @@
 package com.toygoon.mipsi2b;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import static com.toygoon.mipsi2b.Funct.*;
 import static com.toygoon.mipsi2b.OpCodes.*;
+import static com.toygoon.mipsi2b.Registers.*;
 
 public class InputManager {
-    private static Registers regInstance = new Registers();
+    public static boolean checkValidOp(ArrayList<String> separated) {
+        boolean isValid = true;
+
+        if(separated.size() < 3 || separated.size() > 5)
+            isValid = false;
+
+        boolean isItype = isItype(separated.get(0));
+        int tmp = -1;
+
+        if(!isItype) {
+            for(int i=0; i<getAllOps().length; i++)
+                tmp = i;
+
+            if(tmp == -1)
+                isValid = false;
+        }
+
+        return isValid;
+    }
 
     /* splitNormal decodes the instruction sequence which isn't simple condition. */
     public static String[] splitNormal(String input) {
@@ -27,7 +47,7 @@ public class InputManager {
         }
 
         // If it's not detected, returns.
-        if(detectedInst.equals(null))
+        if(detectedInst == null)
             return null;
 
         // Replace all texts into the lower case, and removes op or funct string from the full string.
@@ -100,8 +120,13 @@ public class InputManager {
 
         // Splits the String with space to the String array.
         String[] splitInput = splitNormal(input);
+        if(splitInput == null) {
+            System.out.println("* Invalid command.");
+            return null;
+        }
 
         ArrayList<String> separated = new ArrayList<>();
+
         for(int i=0; i<splitInput.length; i++) {
             // Comma should be deleted.
             splitInput[i] = splitInput[i].replaceAll(",", "");

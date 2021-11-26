@@ -9,6 +9,7 @@ public class Main {
 
         while(true) {
             ArrayList<String> input = im.inputText();
+
             if(input == null)
                 break;
 
