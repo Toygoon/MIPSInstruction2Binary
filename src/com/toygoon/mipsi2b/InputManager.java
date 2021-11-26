@@ -50,10 +50,10 @@ public class InputManager {
             String tmp = "";
             for(int i=cacheIndex; i<commaIndex; i++)
                 tmp += input.charAt(i);
-            splitResult[1] = tmp;
 
+            splitResult[1] = tmp;
             // Last strings matches the rs field.
-            splitResult[2] = new StringBuilder(tmp).delete(0, splitResult[1].length()+1).toString();
+            splitResult[2] = new StringBuilder(input).delete(0, splitResult[1].length()+1).toString();
         } else {
 
             // R type decoding.
