@@ -3,25 +3,14 @@ package com.toygoon.mipsi2b;
 import java.util.ArrayList;
 
 public class InputArrayType {
-    public static enum instType {I_TYPE, R_TYPE};
-    private boolean isValidInst;
     private ArrayList<String> inputList;
     private String[] inputArray;
     private String extraStatus;
 
     public InputArrayType() {
-        this.isValidInst = false;
         this.inputList = null;
         this.inputArray = null;
         this.extraStatus = null;
-    }
-
-    public void setValid(boolean set) {
-        this.isValidInst = set;
-    }
-
-    public boolean getValid() {
-        return this.isValidInst;
     }
 
     public void setInputArray(String[] input) {
