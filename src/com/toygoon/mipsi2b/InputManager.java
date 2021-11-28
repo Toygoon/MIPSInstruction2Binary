@@ -9,26 +9,6 @@ import static com.toygoon.mipsi2b.OpCodes.*;
 import static com.toygoon.mipsi2b.Registers.*;
 
 public class InputManager {
-    public static boolean checkValidOp(ArrayList<String> separated) {
-        boolean isValid = true;
-
-        if(separated.size() < 3 || separated.size() > 5)
-            isValid = false;
-
-        boolean isItype = isItype(separated.get(0));
-        int tmp = -1;
-
-        if(!isItype) {
-            for(int i=0; i<getAllOps().length; i++)
-                tmp = i;
-
-            if(tmp == -1)
-                isValid = false;
-        }
-
-        return isValid;
-    }
-
     /* splitNormal decodes the instruction sequence which isn't simple condition. */
     public static String[] splitNormal(String input) {
         String[] splitResult = null;
@@ -108,31 +88,36 @@ public class InputManager {
         return splitResult;
     }
 
-    public static ArrayList<String> inputText() {
+    public static InputArrayType inputText() {
+        InputArrayType iat = new InputArrayType();
         Scanner s = new Scanner(System.in);
 
         System.out.print("> ");
         // User input from here.
         String input = s.nextLine();
+        iat.setExtraStatus(input);
 
         if(input.equals("exit"))
-            return null;
+            return iat;
 
         // Splits the String with space to the String array.
         String[] splitInput = splitNormal(input);
         if(splitInput == null) {
-            System.out.println("* Invalid command.");
-            return null;
+            iat.setExtraStatus("invalid");
+
+            return iat;
         }
 
         ArrayList<String> separated = new ArrayList<>();
-
         for(int i=0; i<splitInput.length; i++) {
             // Comma should be deleted.
             splitInput[i] = splitInput[i].replaceAll(",", "");
             separated.add(splitInput[i]);
         }
 
-        return separated;
+        iat.setInputArray(splitInput);
+        iat.setInputList(separated);
+
+        return iat;
     }
 }

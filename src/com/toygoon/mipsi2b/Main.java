@@ -8,17 +8,23 @@ public class Main {
         SaveManager sm = new SaveManager();
 
         while(true) {
-            ArrayList<String> input = im.inputText();
+            InputArrayType iat = im.inputText();
 
-            if(input == null)
+            if(iat.getExtraStatus().equals("exit")) {
                 break;
+            } else if (iat.getExtraStatus().equals("invalid")) {
+                System.out.println("* Invalid Command.");
+            } else {
+                BinaryGenerator bg = new BinaryGenerator(iat.getInputList());
+                String generated = bg.generateBin();
 
-            BinaryGenerator bg = new BinaryGenerator(input);
-
-            String generated = bg.generateBin();
-
-            System.out.println(generated);
-            sm.appendData(generated);
+                if (generated.contains("null")) {
+                    System.out.println("* Invalid Register(s).");
+                } else {
+                    System.out.println(generated);
+                    sm.appendData(generated);
+                }
+            }
         }
     }
 }
