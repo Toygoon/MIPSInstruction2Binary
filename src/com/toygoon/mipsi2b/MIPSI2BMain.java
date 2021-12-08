@@ -1,8 +1,6 @@
 package com.toygoon.mipsi2b;
 
-import java.util.ArrayList;
-
-public class Main {
+public class MIPSI2BMain {
     public static void main(String[] args) throws Exception {
         InputManager im = new InputManager();
         SaveManager sm = new SaveManager();
