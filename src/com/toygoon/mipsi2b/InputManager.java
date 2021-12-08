@@ -132,12 +132,24 @@ public class InputManager {
         // User input from here.
         String input = s.nextLine();
         iat.setExtraStatus(input);
+        char binChecker = input.charAt(0);
 
         if(input.equals("exit"))
             return iat;
 
+        // Checking if binary instructions
+        if((binChecker == '0' || binChecker == '1') && input.length() == 32) {
+            iat.setBinaryInst(true);
+            return iat;
+        }
+
+        String[] splitInput = null;
         // Splits the String with space to the String array.
-        String[] splitInput = splitNormal(input);
+        try {
+            splitInput = splitNormal(input);
+        } catch (Exception e) {
+        }
+
         if(splitInput == null) {
             iat.setExtraStatus("invalid");
 

@@ -17,6 +17,16 @@ public class Registers {
         return null;
     }
 
+    /* getRegStr returns its register string from the binary code.*/
+    public static String getRegStr(String reg) {
+        for(int i=0; i<REG_BINS.length; i++) {
+            if(reg.equals(REG_BINS[i]))
+                return REG_NUMS[i];
+        }
+
+        return null;
+    }
+
     /* getRegNum returns its register address from the binary code.*/
     public static String getRegNum(String reg) {
         for(int i=0; i<REG_BINS.length; i++) {

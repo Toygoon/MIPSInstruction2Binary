@@ -61,4 +61,9 @@ public class OffsetCalculator {
 
         return prefix + binary;
     }
+
+    /* binToDec calculates decimal from binary */
+    public String binToDec(String bin) {
+        return null;
+    }
 }

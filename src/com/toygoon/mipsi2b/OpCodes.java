@@ -17,6 +17,16 @@ public class OpCodes {
         return false;
     }
 
+    /* isItype checks its opcode is I type. */
+    public static boolean isBinaryItype(String op) {
+        for(String s : OP_VALUES) {
+            if(s.equals(op))
+                return true;
+        }
+
+        return false;
+    }
+
     /* getOpBinary returns its binary code from the opcode.*/
     public static String getOpBin(String op) {
         for(int i=0; i<OP_CODES.length; i++) {
@@ -25,6 +35,16 @@ public class OpCodes {
         }
 
         return R_TYPE_INST;
+    }
+
+    /* getOpString returns its binary code from the opcode binary.*/
+    public static String getOpStr(String op) {
+        for(int i=0; i<OP_VALUES.length; i++) {
+            if(op.equals(OP_VALUES[i]))
+                return OP_CODES[i];
+        }
+
+        return null;
     }
 
     /* getAllOps returns all supported opcodes from this application. */

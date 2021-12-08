@@ -14,6 +14,15 @@ public class Funct {
         return null;
     }
 
+    /* getFunctBin returns funct binary from the instruction.*/
+    public static String getFunctStr(String funct) {
+        for(int i=0; i<FUNCT_VALUES.length; i++) {
+            if(funct.equals(FUNCT_VALUES[i]))
+                return FUNCT_INSTS[i];
+        }
+
+        return null;
+    }
     /* getAllFuncts returns all supported R type instructions from this application. */
     public static String[] getAllFuncts() {
         return FUNCT_INSTS;

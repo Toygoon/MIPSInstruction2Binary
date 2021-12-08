@@ -6,11 +6,13 @@ public class InputArrayType {
     private ArrayList<String> inputList;
     private String[] inputArray;
     private String extraStatus;
+    private boolean isBinaryInst;
 
     public InputArrayType() {
         this.inputList = null;
         this.inputArray = null;
         this.extraStatus = null;
+        this.isBinaryInst = false;
     }
 
     public void setInputArray(String[] input) {
@@ -43,5 +45,13 @@ public class InputArrayType {
 
     public void initArray(int n) {
         this.inputArray = new String[n];
+    }
+
+    public void setBinaryInst(boolean b) {
+        this.isBinaryInst = b;
+    }
+
+    public boolean isBinaryInst() {
+        return this.isBinaryInst;
     }
 }

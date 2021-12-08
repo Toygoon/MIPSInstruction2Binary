@@ -14,7 +14,17 @@ public class Main {
                 break;
             } else if (iat.getExtraStatus().equals("invalid")) {
                 System.out.println("* Invalid Command.");
+            } else if (iat.isBinaryInst()) {
+                // Binary to instruction sequence
+                InstGenerator ig = new InstGenerator(iat);
+                String generated = ig.generateInst();
+
+                if (generated.contains("null"))
+                    System.out.println("* Invalid Binary.");
+                else
+                    System.out.println(generated);
             } else {
+                // Instruction sequence to binary
                 BinaryGenerator bg = new BinaryGenerator(iat.getInputList());
                 String generated = bg.generateBin();
 
