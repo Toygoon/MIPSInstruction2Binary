@@ -26,6 +26,15 @@ public class InputManager {
                 detectedInst = s;
         }
 
+        String rimm = "";
+        for(int i=0; i<4; i++)
+            rimm += input.charAt(i);
+
+        if(rimm.equals("addi"))
+            detectedInst = "addi";
+        if(rimm.equals("andi"))
+            detectedInst = "andi";
+
         // If it's not detected, returns.
         if(detectedInst == null)
             return null;
@@ -33,7 +42,35 @@ public class InputManager {
         // Replace all texts into the lower case, and removes op or funct string from the full string.
         input = input.toLowerCase().replaceAll(detectedInst, "");
         input = input.replaceAll("\\s+", "");
-        if(isItype(detectedInst)) {
+        if (rimm.equals("addi") || rimm.equals("andi")) {
+            // addi, subi uses 3 registers
+            splitResult = new String[4];
+
+            // The index in 0 is always funct
+            splitResult[0] = detectedInst;
+
+            // Checking it's valid instruction sequence.
+            if(input.indexOf(",") == -1 && input.indexOf("$") == -1)
+                return null;
+
+            // Adding 3 registers.
+            for(int i=1; i<4; i++) {
+                if (i == 3) {
+                    splitResult[3] = input;
+                    break;
+                }
+                int commaIndex = input.indexOf(",");
+                int cacheIndex = input.indexOf("$");
+
+                String tmp = "";
+                for (int j = cacheIndex; j < commaIndex; j++) {
+                    tmp += input.charAt(j);
+                }
+
+                splitResult[i] = tmp;
+                input = new StringBuilder(input).delete(cacheIndex, commaIndex + 1).toString();
+            }
+        } else if (isItype(detectedInst)) {
             // I type decoding
             splitResult = new String[3];
 
@@ -55,7 +92,6 @@ public class InputManager {
             // Last strings matches the rs field.
             splitResult[2] = new StringBuilder(input).delete(0, splitResult[1].length()+1).toString();
         } else {
-
             // R type decoding.
             splitResult = new String[4];
 
@@ -117,7 +153,6 @@ public class InputManager {
 
         iat.setInputArray(splitInput);
         iat.setInputList(separated);
-
         return iat;
     }
 }

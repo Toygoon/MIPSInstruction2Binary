@@ -41,7 +41,10 @@ public class BinaryGenerator {
 
         // I type uses 4 fields, and R type uses 6 fields total.
         // I type doesn't need rd register, so reg_counts are -1
-        if(isItype) {
+        if (op_code.equals("addi") || op_code.equals("andi")) {
+            inst = new String[4];
+            reg_counts = 3;
+        } else if(isItype) {
             inst = new String[4];
             reg_counts = 2;
         } else {
@@ -60,8 +63,17 @@ public class BinaryGenerator {
         // Using getOpBinary method to convert the binary values of op_code.
         inst[0] = ocInstance.getOpBin(op_code);
 
+
         // Converting only I, R type instructions
-        if(isItype) {
+        if (op_code.equals("addi") || op_code.equals("andi")) {
+            /* addi, andi instructions have some differences with lw(sw).
+            * regs[0] : rt
+            * regs[1] : rs
+            * regs[2] : Immediate constant values */
+            inst[1] = regInstance.getRegBin(regs[1]);
+            inst[2] = regInstance.getRegBin(regs[0]);
+            inst[3] = offsetCalculator.signExtends(regs[2]);
+        } else if (isItype) {
             String baseStr, offsetStr;
             /* regs[1] is from the MIPS code sequence.
             * It needs to be separated to two values, offset and base register.

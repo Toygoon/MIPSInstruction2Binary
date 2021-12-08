@@ -49,4 +49,16 @@ public class OffsetCalculator {
         return null;
     }
 
+    /* signExtends calculates immediate constants from the decimal value. */
+    public String signExtends(String dec) {
+        // Converting to binary from decimal.
+        String binary = Integer.toBinaryString(Integer.parseInt(dec));
+        String prefix = "";
+
+        // Making dummy zeros to the front of binary.
+        for(int i=0; i<16-binary.length(); i++)
+            prefix += "0";
+
+        return prefix + binary;
+    }
 }
