@@ -1,3 +1,9 @@
+/* MIPSInstruction2Binary
+ *
+ * @author Lim Jung Min,
+ * Department of Computer Engineering, Yeungnam University.
+ */
+
 package com.toygoon.mipsi2b;
 
 import static com.toygoon.mipsi2b.Funct.*;
